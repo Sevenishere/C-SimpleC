@@ -1,0 +1,5 @@
+# Exclude visual studio dir
+/.vs
+
+# Exclude build
+/build

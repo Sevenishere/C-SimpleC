@@ -1,2 +1,6 @@
 ﻿  SimpleC.c
+C:\Users\chris\Documents\C-folder\Simple_C\Simple_C\SimpleC.c(9,9): warning C4477: 'printf' : format string '%i' requires an argument of type 'int', but variadic argument 1 has type 'uint64_t'
+C:\Users\chris\Documents\C-folder\Simple_C\Simple_C\SimpleC.c(9,9): message : consider using '%lli' in the format string
+C:\Users\chris\Documents\C-folder\Simple_C\Simple_C\SimpleC.c(9,9): message : consider using '%Ii' in the format string
+C:\Users\chris\Documents\C-folder\Simple_C\Simple_C\SimpleC.c(9,9): message : consider using '%I64i' in the format string
   Simple_C.vcxproj -> C:\Users\chris\Documents\C-folder\Simple_C\build\bin\x64-Debug\SimpleCApp.exe
