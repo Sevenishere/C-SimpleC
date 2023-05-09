@@ -13,7 +13,7 @@ int main()
 	int32_t result = scan_x(&x);
 	//printf("Read %i parameters, output is:",result);
 
-	int8_t check = result == 1;
+	int8_t check = (result != 0);// && (result != EOF);
 
 	if (check){
 		printf("Read %i parameters, output is:", result);
@@ -25,6 +25,9 @@ int main()
 		print_fx(2 * x, y2);
 		print_fx(3 * x, y3);
 		print_fx(4 * x, y4);
+	}
+	else if(result==EOF){
+		printf("IO Error");
 	}
 	else {
 		printf("Invalid value");
