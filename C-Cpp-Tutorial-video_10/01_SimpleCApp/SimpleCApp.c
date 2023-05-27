@@ -1,11 +1,14 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <stdint.h>
 #include <stddef.h>
+#include <memory.h>
+#include <string.h>
 
 int32_t f(int32_t x);
 void print_fx(int32_t x, int32_t y);
 int32_t scan_int(int32_t* x);
-void accurate_print();
+void accurate_print(int32_t x, int32_t count);
 
 int main()
 {
@@ -66,11 +69,12 @@ int32_t scan_int(int32_t* x) {
 
 void accurate_print(int32_t x, int32_t count) {
 
-	int32_t i = 1;
+	int32_t* y_value = malloc(count*4);
 
-	while (i <= count) {
-		int32_t y1 = f(1 * x);
-		print_fx(i * x, y1);
-		i++;
+	for(int32_t i = 0 ; i<count ; i++) {
+		y_value[i] = f(i * x);
+	}
+	for (int32_t i = 0; i < count; i++) {
+		printf(" f(%li)=%li ",i*x, y_value[i]);
 	}
 }
