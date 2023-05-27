@@ -6,20 +6,21 @@
 
 void parseINI(const char* INIcontent);
 void appendINI(char* buffer, char c);
+void stripChar(char* buffer);
 
 int main() {
 	char c = 'H';
 	const char* INIContent = 
 		"; last modified 1 April 2001 by John Doe\n"
 		"[owner]\n"
-		"name = John Doe\n"
-		"organization = Acme Widgets Inc.\n"
+		"	name = John Doe\n"
+		"	organization = Acme Widgets Inc.\n"
 		"\n"
 		"[database]\n"
-		"; use IP address in case network name resolution is not working\n"
-		"server = 192.0.2.62\n"
-		"port = 143\n"
-		"file = \"payroll.dat\"\n";
+		"	; use IP address in case network name resolution is not working\n"
+		"	server = 192.0.2.62     \n"
+		"	port = 143\n"
+		"	file = \"payroll.dat\"\n";
 	printf("====  RAW INI FILE  ====\n");
 	printf(INIContent);
 	printf("====  PARSED DATA  ====\n");
@@ -119,6 +120,7 @@ void parseINI(const char* INIcontent) {
 			else if (!(*c == ' ' || *c == '\t')) state = 7;//Invalid Pair
 		}
 
+		//GETS READY TO TAKE THE KEY
 		else if (state == 5) {
 			if (*c == '\n')state = 0;
 			else if (!(*c == ' ' || *c == '\t')) {
@@ -127,15 +129,19 @@ void parseINI(const char* INIcontent) {
 			};
 
 		}
+		//TAKES THE KEY
 		else if (state == 6) {
 
 			if (*c == '\n')
 			{
+
+				stripChar(buffer);
 				memcpy(currentValueName, buffer, 256 * sizeof(char));
 				*buffer = '\0';
 				state = 0;
-				printf("Properties:%s/%s = %s",currentSectionName,currentKeyName,currentValueName);
+				printf("Propertie: \"%s/%s\": \"%s\"\n", currentSectionName, currentKeyName, currentValueName);
 			}
+
 			else {
 				appendINI(buffer, *c);
 			}
@@ -147,10 +153,22 @@ void parseINI(const char* INIcontent) {
 	}
 }
 
-
+//APPENDS LETTER TO THE BUFFER
 void appendINI(char* buffer, char c) {
 	char* cursor;
 	for (cursor = buffer;  *cursor ; cursor++);
 	cursor[0] = c;
 	cursor[1] = '\0';
+}
+
+
+//GETS RID OF THE SPACE AT THE END
+void stripChar(char* buffer)
+{
+	char* cursor;
+	for (cursor = buffer; !cursor[1]=='\0'; cursor++);
+	while (cursor[0] == ' ') {
+		cursor[0] = '\0';
+		cursor--;
+	}
 }
