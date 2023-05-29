@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="String.c">
+    <ClCompile Include="INIParser.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

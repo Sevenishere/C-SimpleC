@@ -15,7 +15,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Random", "Random\Random.vcx
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "memory", "memory\memory.vcxproj", "{89C481F8-ADAF-4A58-BF4B-212E759E0829}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "String", "String\String.vcxproj", "{45FC3927-1909-469D-90A5-8F85E7330D82}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "INIParser", "INIParser\INIParser.vcxproj", "{45FC3927-1909-469D-90A5-8F85E7330D82}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
