@@ -21,7 +21,7 @@ int main() {
 	printf("====  RAW INI FILE  ====\n");
 	printf(INIContent);
 	printf("====  PARSED DATA  ====\n");
-	parseINI(INIContent);
+	ini_parseINI(INIContent);
 	
 }
 

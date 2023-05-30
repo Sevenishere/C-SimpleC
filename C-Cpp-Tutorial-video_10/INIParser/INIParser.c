@@ -4,7 +4,7 @@
 #include <string.h>
 #include <stdio.h>
 
-void parseINI(const char* INIcontent) {
+void ini_parseINI(const char* INIcontent) {
 	int8_t state = 0;
 	char buffer[256];
 	*buffer = '\0';
@@ -48,7 +48,7 @@ void parseINI(const char* INIcontent) {
 			case '\n':
 				break;
 			default:
-				appendINI(buffer, *c);
+				ini_appendBuffer(buffer, *c);
 				state = 3;
 
 			}
@@ -74,7 +74,7 @@ void parseINI(const char* INIcontent) {
 				break;
 
 			default:
-				appendINI(buffer, *c);
+				ini_appendBuffer(buffer, *c);
 				break;
 			}
 			break;
@@ -92,7 +92,7 @@ void parseINI(const char* INIcontent) {
 				state = 0;
 				break;
 			default:
-				appendINI(buffer, *c);
+				ini_appendBuffer(buffer, *c);
 				break;
 			}
 
@@ -131,7 +131,7 @@ void parseINI(const char* INIcontent) {
 			case '\t':
 				break;
 			default:
-				appendINI(buffer, *c);
+				ini_appendBuffer(buffer, *c);
 				state = 6;
 				break;
 			}
@@ -144,7 +144,7 @@ void parseINI(const char* INIcontent) {
 			switch (*c)
 			{
 			case '\n':
-				stripChar(buffer);
+				ini_stripBuffer(buffer);
 				strcpy_s(currentValueName, 256, buffer);
 				*buffer = '\0';
 				state = 0;
@@ -152,7 +152,7 @@ void parseINI(const char* INIcontent) {
 				break;
 
 			default:
-				appendINI(buffer, *c);
+				ini_appendBuffer(buffer, *c);
 				break;
 
 			}
@@ -169,18 +169,18 @@ void parseINI(const char* INIcontent) {
 }
 
 //APPENDS LETTER TO THE BUFFER
-void appendBuffer(char* buffer, char c) {
+void ini_appendBuffer(char* buffer, char c) {
 	char string[2] = { c,'\0' };
 	strcat_s(buffer, 256, string);
 }
 
 
 //GETS RID OF THE SPACE AT THE END
-void stripBuffer(char* buffer)
+void ini_stripBuffer(char* buffer)
 {
 	char* c = &buffer[strlen(buffer) - 1];
 	if (*c == ' ' || *c == '\t') {
 		*c = '\0';
-		stripChar(buffer);
+		ini_stripBuffer(buffer);
 	}
 }
